@@ -1,345 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend App - E-Commerce Demo</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .pr-info {
-            background: #fff;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .pr-info span {
-            background: #764ba2;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        
-        h1 {
-            color: white;
-            text-align: center;
-            margin: 30px 0;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-        
-        .main-content {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .product {
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .product:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        }
-        
-        .product h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        
-        .product-price {
-            font-size: 24px;
-            font-weight: bold;
-            color: #764ba2;
-            margin: 10px 0;
-        }
-        
-        .add-to-cart {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            width: 100%;
-            transition: background 0.3s;
-        }
-        
-        .add-to-cart:hover {
-            background: #764ba2;
-        }
-        
-        .cart-section {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-        }
-        
-        .cart-section h2 {
-            color: #667eea;
-            margin-bottom: 15px;
-        }
-        
-        #cart-items {
-            min-height: 50px;
-            background: white;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 15px;
-        }
-        
-        #cart-total {
-            font-size: 20px;
-            font-weight: bold;
-            color: #764ba2;
-        }
-        
-        .checkout-form {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 8px;
-        }
-        
-        .checkout-form h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .form-group {
-            margin-bottom: 15px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 500;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        #submit-button {
-            background: #764ba2;
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 18px;
-            font-weight: 600;
-            margin-top: 10px;
-            transition: background 0.3s;
-        }
-        
-        #submit-button:hover {
-            background: #667eea;
-        }
-        
-        #checkout-success {
-            display: none;
-            background: #4caf50;
-            color: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        #order-id {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .product-list {
-                grid-template-columns: 1fr;
-            }
-            
-            .pr-info {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frontend App</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #2e8b57 0%, #14532d 100%);
+    min-height: 100vh;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+  .pr-info {
+    background: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pr-info span {
+    background: #14532d;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  h1 {
+    color: white;
+    text-align: center;
+    margin: 30px 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  .main-content {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  .product {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .product:hover { transform: translateY(-5px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); }
+  .product h3 { color: #2e8b57; margin-bottom: 10px; }
+  .product-price { font-size: 24px; font-weight: bold; color: #14532d; margin: 10px 0; }
+  .add-to-cart {
+    background: #2e8b57;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+  }
+  .cart-section { margin-top: 30px; padding: 20px; background: #f5f5f5; border-radius: 8px; }
+  .cart-section h2 { color: #2e8b57; margin-bottom: 15px; }
+  #cart-items { min-height: 50px; background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px; }
+  .cart-item-row { display: flex; align-items: center; justify-content: space-between; padding: 4px 0; }
+  .remove-item {
+    margin-left: 8px;
+    background: transparent;
+    color: #d32f2f;
+    border: 1px solid #f0b3b3;
+    border-radius: 4px;
+    padding: 2px 8px;
+    cursor: pointer;
+  }
+  #shipping-progress-msg { margin: 10px 0; font-size: 14px; }
+  #cart-total { font-size: 20px; font-weight: bold; color: #14532d; }
+  .order-summary { margin-top: 15px; background: #ffffff; border-radius: 6px; padding: 15px; border: 1px solid #e0e0e0; }
+  .order-summary-row { display: flex; justify-content: space-between; margin: 6px 0; }
+  .cart-tools { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .cart-tools .field { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 10px; }
+  .cart-tools label { display: block; font-size: 12px; color: #666; margin-bottom: 6px; }
+  .loyalty-panel { margin-top: 25px; padding: 20px; background: #fffbea; border: 1px solid #f6e05e; border-radius: 8px; }
+  .loyalty-panel h2 { color: #b7791f; margin-bottom: 12px; }
+  .loyalty-panel .field { display: inline-block; margin-right: 10px; }
+  .loyalty-panel input { padding: 8px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; }
+  .loyalty-panel button { background: #b7791f; color: white; border: none; padding: 9px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; }
+  #loyalty-status { margin-top: 10px; font-size: 14px; color: #975a16; }
+  #points-balance { font-weight: 700; color: #14532d; }
+  .checkout-form { margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 8px; }
+  .checkout-form h2 { color: #2e8b57; margin-bottom: 20px; }
+  .form-group { margin-bottom: 15px; }
+  .form-group label { display: block; margin-bottom: 5px; color: #555; font-weight: 500; }
+  .form-group input { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; }
+  #submit-button {
+    background: #14532d;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+  }
+  #checkout-success {
+    display: none;
+    background: #4caf50;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: center;
+  }
+  #order-id { font-size: 18px; font-weight: bold; margin-top: 10px; }
+  @media (max-width: 768px) {
+    .product-list { grid-template-columns: 1fr; }
+    .pr-info { flex-direction: column; text-align: center; gap: 10px; }
+  }
+</style>
 </head>
 <body>
-    <div class="container">
-        <div class="pr-info">
-            <div>
-                <strong>Preview Environment</strong> - Branch: <code>feature/pr-123</code>
-            </div>
-            <span>PR #123</span>
-        </div>
-        
-        <h1>Frontend App - E-Commerce Demo</h1>
-        
-        <div class="main-content">
-            <div class="product-list">
-                <div class="product">
-                    <h3>Product 1</h3>
-                    <p>High-quality wireless headphones with noise cancellation</p>
-                    <div class="product-price">$29.99</div>
-                    <button class="add-to-cart" onclick="addToCart('Product 1', 29.99)">Add to Cart</button>
-                </div>
-                
-                <div class="product">
-                    <h3>Product 2</h3>
-                    <p>Premium mechanical keyboard with RGB lighting</p>
-                    <div class="product-price">$49.99</div>
-                    <button class="add-to-cart" onclick="addToCart('Product 2', 49.99)">Add to Cart</button>
-                </div>
-                
-                <div class="product">
-                    <h3>Product 3</h3>
-                    <p>Ergonomic mouse with programmable buttons</p>
-                    <div class="product-price">$39.99</div>
-                    <button class="add-to-cart" onclick="addToCart('Product 3', 39.99)">Add to Cart</button>
-                </div>
-            </div>
-            
-            <div class="cart-section">
-                <h2>Shopping Cart</h2>
-                <div id="cart-items">Cart is empty</div>
-                <div>Total: $<span id="cart-total">0.00</span></div>
-            </div>
-            
-            <div class="checkout-form">
-                <h2>Checkout</h2>
-                <form id="checkout-form" onsubmit="return processCheckout(event)">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="address">Shipping Address</label>
-                        <input type="text" id="address" name="address" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="card">Credit Card Number</label>
-                        <input type="text" id="card" name="card" pattern="[0-9]{16}" required>
-                    </div>
-                    
-                    <button type="submit" id="submit-button">Complete Order</button>
-                </form>
-                
-                <div id="checkout-success">
-                    <h3>Order Successful!</h3>
-                    <p>Thank you for your purchase!</p>
-                    <div id="order-id"></div>
-                </div>
-            </div>
-        </div>
+<div class="container">
+  <div class="pr-info">
+    <div><strong>Preview Environment</strong> — Branch: feature/pr-456</div>
+    <span>PR #456</span>
+  </div>
+  <h1>Frontend App - Loyalty Rewards Preview</h1>
+  <div class="main-content">
+    <div class="product-list">
+      <div class="product">
+        <h3>Trailhead Solar Charger</h3>
+        <p>A foldable 21W solar panel for multi-day hikes.</p>
+        <div class="product-price">$60.00</div>
+        <button class="add-to-cart" onclick="addToCart('Trailhead Solar Charger', 60.00)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Summit Headlamp</h3>
+        <p>400-lumen rechargeable headlamp with red night mode.</p>
+        <div class="product-price">$40.00</div>
+        <button class="add-to-cart" onclick="addToCart('Summit Headlamp', 40.00)">Add to Cart</button>
+      </div>
+      <div class="product">
+        <h3>Canyon Insulated Bottle</h3>
+        <p>32oz double-wall bottle that keeps drinks cold for 24h.</p>
+        <div class="product-price">$25.00</div>
+        <button class="add-to-cart" onclick="addToCart('Canyon Insulated Bottle', 25.00)">Add to Cart</button>
+      </div>
     </div>
-    
-    <script>
-        let cart = [];
-        let total = 0;
-        
-        function addToCart(productName, price) {
-            cart.push({ name: productName, price: price });
-            total += price;
-            updateCartDisplay();
-        }
-        
-        function updateCartDisplay() {
-            const cartItems = document.getElementById('cart-items');
-            const cartTotal = document.getElementById('cart-total');
-            
-            if (cart.length === 0) {
-                cartItems.innerHTML = 'Cart is empty';
-            } else {
-                let cartHTML = '';
-                cart.forEach(item => {
-                    cartHTML += `<div>${item.name} - $${item.price.toFixed(2)}</div>`;
-                });
-                cartItems.innerHTML = cartHTML;
-            }
-            
-            cartTotal.textContent = total.toFixed(2);
-        }
-        
-        function processCheckout(event) {
-            event.preventDefault();
-            
-            // Generate order ID
-            const orderId = 'ORD-' + Math.random().toString(36).substr(2, 9).toUpperCase();
-            
-            // Show success message
-            document.getElementById('checkout-success').style.display = 'block';
-            document.getElementById('order-id').textContent = 'Order ID: ' + orderId;
-            
-            // Reset form and cart
-            document.getElementById('checkout-form').reset();
-            cart = [];
-            total = 0;
-            updateCartDisplay();
-            
-            // Scroll to success message
-            document.getElementById('checkout-success').scrollIntoView({ behavior: 'smooth' });
-            
-            return false;
-        }
-    </script>
+    <div class="cart-section">
+      <h2>Shopping Cart</h2>
+      <div id="cart-items">Cart is empty</div>
+      <div id="shipping-progress-msg"></div>
+      <div>Total: $<span id="cart-total">0.00</span></div>
+      <div class="order-summary">
+        <div class="order-summary-row"><span>Subtotal</span><span>$<span id="summary-subtotal">0.00</span></span></div>
+        <div class="order-summary-row"><span>Discount</span><span>-$<span id="summary-promo">0.00</span></span></div>
+        <div class="order-summary-row"><span>Points Redeemed</span><span>-$<span id="summary-points">0.00</span></span></div>
+        <div class="order-summary-row"><span>Tax</span><span>$<span id="summary-tax">0.00</span></span></div>
+        <div class="order-summary-row"><span>Grand Total</span><span>$<span id="summary-grand-total">0.00</span></span></div>
+      </div>
+      <div class="cart-tools">
+        <div class="field">
+          <label>Promo Code</label>
+          <input id="promo-code" placeholder="GOLD15">
+          <button id="apply-promo" onclick="applyPromo()">Apply</button>
+          <span id="promo-status"></span>
+        </div>
+        <div class="field">
+          <label>Redeem Peak Points</label>
+          <input id="redeem-points" type="number" min="0" step="10">
+          <button id="redeem-button" onclick="redeemPoints()">Redeem</button>
+          <span id="redeem-status"></span>
+        </div>
+      </div>
+    </div>
+    <div class="loyalty-panel">
+      <h2>Peak Club Loyalty</h2>
+      <div class="field"><label>Member Name</label><input id="member-name"></div>
+      <div class="field"><label>Member Email</label><input id="member-email"></div>
+      <button id="loyalty-signup" onclick="enrollMember()">Join Peak Club</button>
+      <div id="loyalty-status">Not enrolled yet</div>
+      <div>Peak Points balance: <span id="points-balance">0</span></div>
+    </div>
+    <form class="checkout-form" id="checkout-form" onsubmit="return processCheckout(event)">
+      <h2>Checkout</h2>
+      <div class="form-group"><label>Full Name</label><input id="name" required></div>
+      <div class="form-group"><label>Email</label><input id="email" type="email" required></div>
+      <div class="form-group"><label>Shipping Address</label><input id="address" required></div>
+      <div class="form-group"><label>Credit Card Number</label><input id="card" required></div>
+      <button id="submit-button" type="submit">Complete Order</button>
+      <div id="checkout-success">Order Successful! Thank you for your purchase!</div>
+      <div id="order-id"></div>
+    </form>
+  </div>
+</div>
+<script>
+  let cart = [];
+  let total = 0;
+  let discountRate = 0;
+  let enrolled = false;
+  let pointsBalance = 0;
+  let redeemedValue = 0;
+  const FREE_SHIPPING_THRESHOLD = 80;
+  const TAX_RATE = 0.08;
+  const EARN_RATE = 2;           // Peak Points earned per $1 added to the cart
+  const POINTS_PER_DOLLAR = 10;  // 10 Peak Points redeem as $1
+
+  function addToCart(productName, price) {
+    cart.push({ name: productName, price: price });
+    total += price;
+    if (enrolled) {
+      pointsBalance += Math.floor(price * EARN_RATE);
+    }
+    updateCartDisplay();
+  }
+
+  function removeFromCart(index) {
+    cart.splice(index, 1);
+    total = cart.reduce((sum, item) => sum + item.price, 0);
+    updateCartDisplay();
+  }
+
+  function enrollMember() {
+    const name = document.getElementById('member-name').value;
+    const email = document.getElementById('member-email').value;
+    const status = document.getElementById('loyalty-status');
+    if (!name || !email) {
+      status.textContent = 'Please provide both name and email to join';
+      return;
+    }
+    enrolled = true;
+    pointsBalance += 500;
+    status.textContent = 'Enrolled! Welcome bonus: 500 Peak Points';
+    updateCartDisplay();
+  }
+
+  function applyPromo() {
+    const input = document.getElementById('promo-code');
+    const status = document.getElementById('promo-status');
+    const code = (input.value || '').trim().toUpperCase();
+    if (code === 'GOLD15') {
+      discountRate = 0.15;
+      status.textContent = 'Promo applied: 15% off';
+    } else {
+      discountRate = 0;
+      status.textContent = 'Invalid promo code';
+    }
+    updateCartDisplay();
+  }
+
+  function redeemPoints() {
+    const input = document.getElementById('redeem-points');
+    const status = document.getElementById('redeem-status');
+    const pts = parseInt(input && input.value, 10);
+    if (!pts || pts <= 0) {
+      status.textContent = 'Enter a points amount to redeem';
+      return;
+    }
+    if (pts > pointsBalance) {
+      status.textContent = 'Not enough points';
+      return;
+    }
+    // pricing rule: redemption must be capped at half of the subtotal
+    redeemedValue = pts / POINTS_PER_DOLLAR;  // intentional: cap not applied yet
+    pointsBalance -= pts;
+    status.textContent = 'Redeemed $' + redeemedValue.toFixed(2);
+    updateCartDisplay();
+  }
+
+  function updateCartDisplay() {
+    const cartItems = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    const shippingMsg = document.getElementById('shipping-progress-msg');
+
+    if (cart.length === 0) {
+      cartItems.innerHTML = 'Cart is empty';
+    } else {
+      let cartHTML = '';
+      cart.forEach((item, index) => {
+        cartHTML += `<div class="cart-item-row"><span>${item.name} - $${item.price.toFixed(2)}</span><button class="remove-item" onclick="removeFromCart(${index})">Remove</button></div>`;
+      });
+      cartItems.innerHTML = cartHTML;
+    }
+
+    cartTotal.textContent = total.toFixed(2);
+
+    if (shippingMsg) {
+      const remaining = FREE_SHIPPING_THRESHOLD - total;
+      if (remaining > 0) {
+        shippingMsg.textContent = 'Add $' + remaining.toFixed(2) + ' to get free shipping';
+      } else {
+        shippingMsg.textContent = 'You qualify for free shipping!';
+      }
+    }
+
+    const subtotal = total;
+    const discount = subtotal * discountRate;
+    // pricing rule: tax must be computed on the amount after promo and redemption
+    const tax = subtotal * TAX_RATE;  // intentional: ignores promo and redeemed points
+    const grand = Math.max(0, subtotal - discount - redeemedValue + tax);
+
+    document.getElementById('summary-subtotal').textContent = subtotal.toFixed(2);
+    document.getElementById('summary-promo').textContent = discount.toFixed(2);
+    document.getElementById('summary-points').textContent = redeemedValue.toFixed(2);
+    document.getElementById('summary-tax').textContent = tax.toFixed(2);
+    document.getElementById('summary-grand-total').textContent = grand.toFixed(2);
+    document.getElementById('points-balance').textContent = pointsBalance;
+  }
+
+  function processCheckout(event) {
+    event.preventDefault();
+    const orderId = 'LYL-' + Math.random().toString(36).slice(2, 10).toUpperCase();
+    const successBox = document.getElementById('checkout-succes');  // intentional: typo'd id, the panel never shows
+    successBox.style.display = 'block';
+    document.getElementById('order-id').textContent = 'Order ID: ' + orderId;
+    document.getElementById('checkout-form').reset();
+    cart = [];
+    total = 0;
+    discountRate = 0;
+    redeemedValue = 0;
+    updateCartDisplay();
+    return false;
+  }
+
+  updateCartDisplay();
+</script>
 </body>
 </html>
